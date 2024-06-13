@@ -29,8 +29,27 @@ const userSchema = new mongoose.Schema({
     }
 })
 
+const todoSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    description: {
+        type: String,
+        trim: true
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'completed'],
+        default: "pending"
+    }
+})
+
 const User = mongoose.model('User', userSchema);
+const Todo = mongoose.model('Todo', todoSchema);
 
 module.exports = {
-    User
+    User,
+    Todo
 }
