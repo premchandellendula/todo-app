@@ -26,7 +26,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
-    }
+    },
+    todos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Todo'
+    }]
 })
 
 const todoSchema = new mongoose.Schema({
@@ -43,6 +47,11 @@ const todoSchema = new mongoose.Schema({
         type: String,
         enum: ['pending', 'completed'],
         default: "pending"
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 })
 

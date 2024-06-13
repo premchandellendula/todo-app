@@ -6,7 +6,7 @@ app.use(express.json())
 
 const rootRouter = require('./routes/index')
 
-app.use('api/v1', rootRouter);
+app.use('/api/v1', rootRouter);
 
 app.listen(3000, () => {
     console.log("Server listening on localhost:3000")
