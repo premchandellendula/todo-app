@@ -106,4 +106,8 @@ router.put('/', authMiddleware, async (req, res) => {
     })
 })
 
+
+router.post('/user/:userId/todos', authMiddleware, async (req, res) => {
+    
+})
 module.exports = router;
