@@ -41,7 +41,7 @@ router.post('/todo', authMiddleware, async (req, res) => {
     }
 })
 
-router.get('/get', authMiddleware, async (req, res) => {
+router.get('/todo', authMiddleware, async (req, res) => {
     const todos = await Todo.find({userId : req.userId})
 
     res.json({
