@@ -5,10 +5,15 @@ const Todos = () => {
     const [todos, setTodos] = useState([])
 
     useEffect(()=>{
-        axios.get("http://localhost:3000/api/v1/todos/todo")
-            .then(response => {
-                setTodos(response.data.todos)
-            })
+        axios.get("http://localhost:3000/api/v1/todos/todo", {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
+        .then(response => {
+            setTodos(response.data.todos)
+            // console.log(response.data)
+        })
     },[])
   return (
     <div className='m-6'>

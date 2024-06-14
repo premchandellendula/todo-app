@@ -33,7 +33,7 @@ const Signin = () => {
                       })
 
                       // console.log(response.data)
-                      localStorage.setItem(token, response.data.token)
+                      localStorage.setItem("token", response.data.token)
                       navigate('/dashboard')
                     }} label={"Sign In"} />
                 </div>
