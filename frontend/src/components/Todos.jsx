@@ -14,7 +14,7 @@ const Todos = () => {
             setTodos(response.data.todos)
             // console.log(response.data)
         })
-    },[])
+    },[todos])
   return (
     <div className='m-6'>
         <div className="font-bold mt-6 text-lg">
