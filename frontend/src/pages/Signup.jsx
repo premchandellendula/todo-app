@@ -45,9 +45,9 @@ const Signup = () => {
                           firstname,
                           lastname
                         });
-                        console.log('ok')
-                        console.log(response.data.token)
-                        // localStorage.setItem("token", response.data.token)
+                        // console.log('ok')
+                        // console.log(response.data.token)
+                        localStorage.setItem("token", response.data.token)
                       } catch (err) {
                         console.log('not ok')
                         console.log(err)
