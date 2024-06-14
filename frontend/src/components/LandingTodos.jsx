@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import axios from "axios"
 
-const Todos = () => {
-    const [todos, setTodos] = useState([])
+const LandingTodos = () => {
 
-    useEffect(()=>{
-        axios.get("http://localhost:3000/api/v1/todos/todo")
-            .then(response => {
-                setTodos(response.data.todos)
-            })
-    },[])
-  return (
-    <div className='m-6'>
-        <div className="font-bold mt-6 text-lg">
-            Todos
+    const [todos, setTodos] = useState([
+        {
+            _id: 1,
+            title: "Go to gym",
+            description: "Hit the gym from 6-8"
+        },{
+            _id: 2,
+            title: "Cook the dinner",
+            description: "Make chapathi and cook the curry"
+        },{
+            _id: 3,
+            title: "Code the todo app",
+            description: "Complete the frontend part of todo app"
+        }
+    ])
+    
+    return (
+        <div className='m-6'>
+            <div className="font-bold mt-6 text-lg">
+                Todos
+            </div>
+            <div>
+                {todos.map(todo => <Todo key={todo._id} todo={todo} />)}
+            </div>
         </div>
-        <div>
-            {todos.map(todo => <Todo key={todo._id} todo={todo} />)}
-        </div>
-    </div>
-  )
+    )
 }
 
 function Todo({todo}) {
@@ -45,4 +53,4 @@ function Todo({todo}) {
     </div>
 }
 
-export default Todos
+export default LandingTodos

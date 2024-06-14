@@ -32,15 +32,22 @@ router.post('/signup', async (req, res) => {
         })
     }
 
-    await User.create({
+    const user = await User.create({
         username: req.body.username,
         password: req.body.password,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
     })
 
+    let userId = user._id
+
+    const token = jwt.sign({
+        userId
+    }, JWT_SECRET)
+
     res.json({
-        message: "User created successfully"
+        message: "User created successfully",
+        token
     })
 })
 

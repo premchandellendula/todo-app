@@ -1,7 +1,7 @@
 import React from 'react'
 import LandingAppbar from '../components/LandingAppbar'
 import TodoInputs from '../components/TodoInputs'
-import Todos from '../components/Todos'
+import LandingTodos from '../components/LandingTodos'
 
 const Landing = () => {
   return (
@@ -9,7 +9,7 @@ const Landing = () => {
         <LandingAppbar firstname={"Premchand"} />
         <div>
             <TodoInputs />
-            <Todos />
+            <LandingTodos />
         </div>
     </div>
   )
