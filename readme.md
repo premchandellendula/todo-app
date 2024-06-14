@@ -12,3 +12,6 @@
 - create endpoints/routes for **signup**, **signin**, **update** in user.js
 - create endpoints/routes for **todo** (post) and
 **todo** (get) in todos.js
+- created signup and signin
+- created landing todos and dashboard todos
+- note: in dependencies in Todos while get axios give todos as dependency so we get everytime a todo changes
