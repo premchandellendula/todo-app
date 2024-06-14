@@ -15,3 +15,6 @@
 - created signup and signin
 - created landing todos and dashboard todos
 - note: in dependencies in Todos while get axios give todos as dependency so we get everytime a todo changes
+- encountered or learnt new react-router-dom hook as useLocation. I used this because of getting the firstname of the user sign-ed up or in and putting the name on topbar
+- navigate can have something which is state which carries as object
+- at the needed location, we can useLocation to get the state.

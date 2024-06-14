@@ -48,11 +48,15 @@ const Signup = () => {
                         // console.log('ok')
                         // console.log(response.data.token)
                         localStorage.setItem("token", response.data.token)
+                        if(username && password){
+                          console.log("Navigating to Dashboard with firstname: ", firstname)
+                          navigate("/dashboard", {state: {firstname}})
+                        }
                       } catch (err) {
                         console.log('not ok')
                         console.log(err)
                       }
-                      navigate("/dashboard");
+                      // navigate("/dashboard");
                     }} label={"Sign Up"} />
                 </div>
                 <BottomWarning label={"Already have an account?"} buttonText={"Sign in"} to={"/signin"}/>
