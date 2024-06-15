@@ -113,8 +113,28 @@ router.put('/', authMiddleware, async (req, res) => {
     })
 })
 
-
-router.post('/user/:userId/todos', authMiddleware, async (req, res) => {
-    
+const getUsername = zod.object({
+    username: zod.string().email(),
+    password: zod.string().min(6)
 })
+
+router.get('/user', authMiddleware, async (req, res) => {
+    const userId = req.userId
+
+    const user = await User.findOne({
+        _id: userId
+    })
+
+    if(user){
+        res.json({
+            firstname: user.firstname
+        })
+        return
+    }
+
+    res.json({
+        message: "Error while logging in"
+    })
+})
+
 module.exports = router;

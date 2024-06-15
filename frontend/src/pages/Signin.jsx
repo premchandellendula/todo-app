@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Heading from '../components/Heading'
 import SubHeading from '../components/SubHeading'
 import InputBox from '../components/InputBox'
@@ -9,7 +9,9 @@ import { useNavigate } from 'react-router-dom'
 
 const Signin = () => {
   const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('');
+  const [firstname, setFirstname] = useState('')
+
   const navigate = useNavigate()
   return (
     <div className='bg-slate-300 h-screen flex justify-center'>
@@ -27,14 +29,33 @@ const Signin = () => {
 
                 <div className='pt-4'>
                     <Button onClick={async () => {
-                      const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
-                        username,
-                        password
-                      })
+                      try{
+                        console.log("Enter try")
+                        const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
+                          username,
+                          password
+                        },{
+                          headers: {
+                            'Content-Type' : 'application/json'
+                          }
+                        })
+  
+                        console.log('Sign-in response: ',response.data)
+                        localStorage.setItem("token", response.data.token)
 
-                      // console.log(response.data)
-                      localStorage.setItem("token", response.data.token)
-                      navigate('/dashboard')
+                        const token = localStorage.getItem("token")
+                        console.log("token: ", token)
+                        const userResponse = await axios.get("http://localhost:3000/api/v1/user/user", {
+                          headers: {
+                            Authorization: "Bearer " + token
+                          }
+                        });
+                        console.log(userResponse.data)
+                        setFirstname(userResponse.data.firstname)
+                        navigate('/dashboard', {state: {firstname : userResponse.data.firstname}})
+                      }catch(err){
+                        console.log("Error during sign-in:", err);
+                      }
                     }} label={"Sign In"} />
                 </div>
                 <BottomWarning label={"Don't have an account?"} buttonText={"Sign Up"} to={"/signup"} />
