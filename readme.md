@@ -26,3 +26,6 @@
 - I can see the firstname in postman.
 - But when I tried to fetch the firstname from frontend, using axios.get....we cannot send body, I have tried params, body but didn't get help, then
 - I got like authorization can give userId from that I can make find of that userId in users and get the firstname and it worked
+
+
+- for the landing signin,signup redirects I used useNavigate hook from react-router-dom
