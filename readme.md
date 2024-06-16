@@ -29,3 +29,8 @@
 
 
 - for the landing signin,signup redirects I used useNavigate hook from react-router-dom
+
+
+- for the **delete**
+- added an endpoint of delete which gets todoId as query from frontend and deletes and the reference also gets deleted by User.updateMany
+- from frontend we send todoId by params after or before headers

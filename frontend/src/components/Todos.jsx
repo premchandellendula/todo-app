@@ -44,7 +44,17 @@ function Todo({todo}) {
         <div className='flex justify-center'>
             <div className='flex flex-col justify-center gap-2'>
                 <button type='button' className='text-white bg-blue-700 hover:bg-blue-800 rounded px-3 py-1'>Edit</button>
-                <button type='button' className='text-white bg-red-600 hover:bg-red-700 rounded px-3 py-1'>Delete</button>
+                <button onClick={async () => {
+                    await axios.delete("http://localhost:3000/api/v1/todos/todo", {
+                        headers: {
+                            Authorization: "Bearer " + localStorage.getItem("token")
+                        },
+                        params: {
+                            todoId: todo._id
+                        }
+                    })
+                    console.log(todo._id)
+                }} type='button' className='text-white bg-red-600 hover:bg-red-700 rounded px-3 py-1'>Delete</button>
             </div>
         </div>
     </div>

@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://premcellendula:YD8kZCioZ5pKYbfr@cluster0.sur9all.mongodb.net/todo-app");
+mongoose.connect("mongodb+srv://premcellendula:YD8kZCioZ5pKYbfr@cluster0.sur9all.mongodb.net/todo-app", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000, // Increase server selection timeout
+    socketTimeoutMS: 45000, // Increase socket timeout
+  });
 
 const userSchema = new mongoose.Schema({
     username: {

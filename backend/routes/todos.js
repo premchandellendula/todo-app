@@ -49,4 +49,28 @@ router.get('/todo', authMiddleware, async (req, res) => {
     })
 })
 
+router.delete('/todo', authMiddleware, async (req, res) => {
+    const todoId = req.query.todoId;
+
+    try {
+        const deletedTodo = await Todo.findByIdAndDelete(todoId);
+
+        if (!deletedTodo) {
+            return res.status(404).json({ message: "Todo not found" });
+        }
+
+        await User.updateMany(
+            { todos: todoId },
+            { $pull: { todos: todoId } }
+        );
+
+        res.json({
+            message: "Deleted successfully"
+        });
+    } catch (error) {
+        console.error("Error deleting todo:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+})
+
 module.exports = router;
