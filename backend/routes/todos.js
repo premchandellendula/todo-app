@@ -73,4 +73,21 @@ router.delete('/todo', authMiddleware, async (req, res) => {
     }
 })
 
+router.patch('/todo/:id', authMiddleware, async (req, res) => {
+    const {status} = req.body;
+    const todo = await Todo.findByIdAndUpdate(
+        req.params.id,
+        {status},
+        {new: true}
+    )
+
+    if(!todo){
+        return res.status(404).json({
+            message: "Todo not found"
+        })
+    }
+
+    res.json(todo)
+})
+
 module.exports = router;

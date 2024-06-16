@@ -28,10 +28,24 @@ const Todos = () => {
 }
 
 function Todo({todo}) {
+    const [isChecked, setIsChecked] = useState(todo.status === 'completed')
+
+    const handleCheckBox = async (e) => {
+        const newStatus = e.target.checked ? 'completed' : 'pending'
+        setIsChecked(e.target.checked)
+        await axios.patch(`http://localhost:3000/api/v1/todos/todo/${todo._id}`, {
+            status : newStatus
+        }, {
+            headers: {
+                Authorization : "Bearer " + localStorage.getItem("token")
+            }
+        })
+    }
+
     
     return <div className="w-4/5 shadow ml-20 mr-6 my-6 flex border  rounded px-4 py-5">
         <div className='flex items-center mx-4 my-4'>
-            <input type="checkbox" name="done" id="done" className='h-5 w-5 accent-green-600'/>
+            <input onChange={handleCheckBox} checked={isChecked} type="checkbox" name="done" id="done" className='h-5 w-5 accent-green-600'/>
         </div>
         <div className='shadow border rounded mx-5 w-4/5 py-3 px-3'>
             <div className='font-medium text-lg'>
