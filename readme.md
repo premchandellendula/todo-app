@@ -34,3 +34,13 @@
 - for the **delete**
 - added an endpoint of delete which gets todoId as query from frontend and deletes and the reference also gets deleted by User.updateMany
 - from frontend we send todoId by params after or before headers
+
+- for **checked**
+- we use patch request in backend as it get the id parameter and newStatus of the todo from body
+- we find the todo using findByIdAndUpdate in which we send id, status, and {new:true}
+- {new:true} means we get the document return after it is updated, by default if we dont give this, we will get the document before updating
+- in fronted we have isChecked for true/false we send it as checked={isChecked} and we send patch axios req, by sending the id as params,
+- http://localhost:3000/api/v1/todos/todo/${todo._id}
+and params: {
+    status: newStatus
+}
